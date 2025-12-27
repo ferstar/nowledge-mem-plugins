@@ -97,24 +97,51 @@ class DeepMemorySearcher:
 
         # Phase 2: Thread discovery
         if expand_threads and thread_limit > 0:
-            thread_response = self.client.search_threads(query, limit=thread_limit)
+            # Strategy 1: Use source_thread_id from memories (direct reference)
+            thread_ids_from_memories: set[str] = set()
+            for mem in result.memories:
+                if mem.source_thread_id:
+                    thread_ids_from_memories.add(mem.source_thread_id)
 
-            # Handle both list and dict responses
-            if isinstance(thread_response, list):
-                threads_data = thread_response
-                result.total_threads_found = len(threads_data)
-            else:
-                threads_data = thread_response.get("threads", [])
-                result.total_threads_found = thread_response.get("total", len(threads_data))
-
-            for t in threads_data:
-                result.related_threads.append(
-                    ThreadRef(
-                        thread_id=t.get("thread_id", t.get("id", "")),
-                        title=t.get("title"),
-                        summary=t.get("summary"),
-                        message_count=t.get("message_count", 0),
+            # Fetch threads by ID if we have references
+            for tid in list(thread_ids_from_memories)[:thread_limit]:
+                try:
+                    thread_data = self.client.get_thread(tid)
+                    # get_thread returns {"thread": {...}, "messages": [...]}
+                    thread_obj = thread_data.get("thread", thread_data)
+                    result.related_threads.append(
+                        ThreadRef(
+                            thread_id=thread_obj.get("thread_id", thread_obj.get("id", "")),
+                            title=thread_obj.get("title"),
+                            summary=thread_obj.get("summary"),
+                            message_count=thread_obj.get("message_count", 0),
+                        )
                     )
-                )
+                except Exception:
+                    pass  # Thread may have been deleted
+
+            # Strategy 2: If no thread references found, search by query
+            if not result.related_threads:
+                thread_response = self.client.search_threads(query, limit=thread_limit)
+
+                # Handle both list and dict responses
+                if isinstance(thread_response, list):
+                    threads_data = thread_response
+                    result.total_threads_found = len(threads_data)
+                else:
+                    threads_data = thread_response.get("threads", [])
+                    result.total_threads_found = thread_response.get("total", len(threads_data))
+
+                for t in threads_data:
+                    result.related_threads.append(
+                        ThreadRef(
+                            thread_id=t.get("thread_id", t.get("id", "")),
+                            title=t.get("title"),
+                            summary=t.get("summary"),
+                            message_count=t.get("message_count", 0),
+                        )
+                    )
+            else:
+                result.total_threads_found = len(result.related_threads)
 
         return result
