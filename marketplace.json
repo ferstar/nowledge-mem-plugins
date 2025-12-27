@@ -3,7 +3,7 @@
   "description": "Personal knowledge base management plugin for Claude Code",
   "plugins": [
     {
-      "name": "nm-plugin",
+      "name": "nm",
       "description": "Unified CLI for personal knowledge base management with Nowledge Mem",
       "source": "./",
       "version": "1.0.0",

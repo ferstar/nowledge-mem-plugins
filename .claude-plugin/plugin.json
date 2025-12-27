@@ -1,5 +1,5 @@
 {
-  "name": "nm-plugin",
+  "name": "nm",
   "description": "Personal knowledge base management plugin for Nowledge Mem. Provides CLI commands for saving memories, searching knowledge, persisting sessions, and managing stored information.",
   "version": "1.0.0",
   "author": {

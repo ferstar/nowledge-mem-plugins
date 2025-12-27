@@ -20,7 +20,7 @@ A Claude Code plugin for personal knowledge base management with Nowledge Mem.
 /plugin marketplace add ferstar/nowledge-mem-plugins
 
 # Install plugin
-/plugin install nm-plugin
+/plugin install nm
 ```
 
 ### Manual Installation
