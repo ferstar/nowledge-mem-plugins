@@ -1,6 +1,6 @@
-# NM Plugin
+# Nowledge Mem Plugins
 
-A Claude Code plugin for personal knowledge base management with Nowledge Mem.
+Claude Code plugin marketplace for personal knowledge base management with [Nowledge Mem](https://github.com/ferstar/nowledge-mem).
 
 ## Features
 
@@ -38,8 +38,8 @@ claude --plugin-dir ./nowledge-mem-plugins
 Create a `.env` file in the skill directory with:
 
 ```bash
-MEM_API_URL=https://your-api-endpoint
-MEM_AUTH_TOKEN=your-auth-token
+NOWLEDGE_MEM_API_URL=https://your-api-endpoint
+NOWLEDGE_MEM_AUTH_TOKEN=your-auth-token
 ```
 
 Or set environment variables directly.
@@ -69,18 +69,29 @@ nm expand <thread_id>
 nm diagnose
 ```
 
-## Plugin Structure
+## Repository Structure
 
 ```
-nm-plugin/
+nowledge-mem-plugins/
 ├── .claude-plugin/
-│   └── plugin.json
+│   ├── marketplace.json      # Marketplace catalog
+│   └── plugin.json           # Plugin manifest
 ├── skills/
 │   └── nowledge-mem/
-│       ├── SKILL.md
-│       ├── scripts/
-│       ├── references/
-│       └── pyproject.toml
+│       ├── SKILL.md          # Skill definition
+│       ├── scripts/          # CLI source code
+│       │   ├── cli.py
+│       │   ├── api.py
+│       │   ├── config.py
+│       │   ├── search.py
+│       │   └── session.py
+│       ├── references/       # Documentation
+│       │   ├── command_reference.md
+│       │   ├── configuration.md
+│       │   ├── troubleshooting.md
+│       │   └── usage_patterns.md
+│       ├── pyproject.toml
+│       └── .env.example
 ├── README.md
 └── .gitignore
 ```
