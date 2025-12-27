@@ -169,8 +169,17 @@ def parse_session_file(
     session_file: Path,
     max_messages: int = 0,
     skip_last_turn: bool = True,
+    skip_incomplete_turns: bool = True,
 ) -> ParseResult:
-    """Parse JSONL session file and extract messages"""
+    """Parse JSONL session file and extract messages
+
+    Args:
+        session_file: Path to session JSONL file
+        max_messages: Maximum messages to extract (0 = unlimited)
+        skip_last_turn: Skip the current incomplete turn (user message without response)
+        skip_incomplete_turns: Skip all cancelled/incomplete turns (user messages without
+                               corresponding assistant responses)
+    """
     messages: list[dict[str, Any]] = []
     total_lines = 0
 
@@ -214,6 +223,22 @@ def parse_session_file(
 
     if max_messages > 0 and len(messages) > max_messages:
         messages = messages[-max_messages:]
+
+    # Filter incomplete turns: user messages followed by another user message (cancelled)
+    if skip_incomplete_turns and len(messages) >= 2:
+        filtered: list[dict[str, Any]] = []
+        for i, msg in enumerate(messages):
+            if msg["role"] == "user":
+                # Check if next message is from assistant
+                if i + 1 < len(messages) and messages[i + 1]["role"] == "assistant":
+                    filtered.append(msg)
+                # If this is the last message, it will be handled by skip_last_turn
+                elif i == len(messages) - 1:
+                    filtered.append(msg)
+                # Otherwise skip (cancelled user message)
+            else:
+                filtered.append(msg)
+        messages = filtered
 
     if skip_last_turn and len(messages) >= 2:
         last_user_idx = None
