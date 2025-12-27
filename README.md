@@ -2,12 +2,27 @@
 
 Claude Code plugin marketplace for personal knowledge base management with [Nowledge Mem](https://mem.nowledge.co/).
 
+## Why This Plugin?
+
+Nowledge Mem provides an [official MCP server](https://mem.nowledge.co/docs/integrations). Here's why you might prefer this plugin instead:
+
+| Aspect | MCP Server | This Plugin (Skill) |
+|--------|------------|---------------------|
+| **Token Usage** | Tool descriptions injected into every request | Minimal tokens (keyword list only) |
+| **Activation** | Always loaded | On-demand, triggered by keywords |
+| **Context Window** | Consumes tokens constantly | Only uses tokens when invoked |
+| **Features** | All-in-one (Obsidian, web search, threads, etc.) | Core memory functions only |
+| **Customization** | Cannot disable unwanted tools | Minimal, focused feature set |
+| **Session Persist** | ❌ Not supported | ✓ Save Claude Code & Codex sessions |
+
+**TL;DR**: MCP tools consume tokens in every conversation turn, even when unused. This skill only costs tokens when you actually need it, with just the features you need—keeping your context window clean for the work that matters.
+
 ## Features
 
 - Search memories with semantic similarity
 - Add new memories with metadata (labels, importance, temporal context)
 - Persist Claude Code/Codex CLI sessions to knowledge base
-- Expand and view full thread content
+- Progressive disclosure for thread content (expand on demand)
 - Update and delete memories
 - List all labels
 
