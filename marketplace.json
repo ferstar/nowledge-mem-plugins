@@ -1,0 +1,13 @@
+{
+  "name": "nowledge-mem-plugin",
+  "description": "Personal knowledge base management plugin for Claude Code",
+  "plugins": [
+    {
+      "name": "nm-plugin",
+      "description": "Unified CLI for personal knowledge base management with Nowledge Mem",
+      "source": "./",
+      "version": "1.0.0",
+      "skills": ["./skills/nowledge-mem"]
+    }
+  ]
+}
