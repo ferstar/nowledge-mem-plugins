@@ -1,13 +1,24 @@
 {
   "name": "nowledge-mem-plugins",
-  "description": "Personal knowledge base management plugin for Claude Code",
+  "owner": {
+    "name": "ferstar",
+    "email": "zhangjianfei@gmail.com"
+  },
+  "metadata": {
+    "description": "Personal knowledge base management plugins for Claude Code",
+    "version": "1.0.0"
+  },
   "plugins": [
     {
       "name": "nm",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ferstar/nowledge-mem-plugins.git"
+      },
       "description": "Unified CLI for personal knowledge base management with Nowledge Mem",
-      "source": "./",
       "version": "1.0.0",
-      "skills": ["./skills/nowledge-mem"]
+      "keywords": ["knowledge-base", "memory", "session", "persistence"],
+      "strict": false
     }
   ]
 }
