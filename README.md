@@ -35,14 +35,26 @@ claude --plugin-dir ./nowledge-mem-plugins
 
 ## Configuration
 
-Create a `.env` file in the skill directory with:
+Create a `.env` file based on `.env.example`:
 
 ```bash
 NOWLEDGE_MEM_API_URL=https://your-api-endpoint
 NOWLEDGE_MEM_AUTH_TOKEN=your-auth-token
 ```
 
-Or set environment variables directly.
+**Important**: The `.env` file must be placed in the **cache directory**, not the marketplaces directory:
+
+```
+# ✗ Wrong location
+~/.claude/plugins/marketplaces/nowledge-mem-plugins/skills/nowledge-mem/.env
+
+# ✓ Correct location
+~/.claude/plugins/cache/nowledge-mem-plugins/nm/<version>/skills/nowledge-mem/.env
+```
+
+You can find the exact path by running the skill and checking the "Base directory" shown in the output.
+
+Alternatively, set environment variables directly in your shell profile.
 
 ## Usage
 
