@@ -1,0 +1,24 @@
+[project]
+name = "nowledge-mem"
+version = "1.0.0"
+description = "Unified CLI for Nowledge Mem knowledge base"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.1.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.0.0",
+]
+
+[project.scripts]
+nm = "scripts.cli:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts"]
+
+[tool.hatch.build.targets.sdist]
+include = ["scripts"]
