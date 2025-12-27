@@ -1,5 +1,5 @@
 {
-  "name": "nowledge-mem-plugin",
+  "name": "nowledge-mem-plugins",
   "description": "Personal knowledge base management plugin for Claude Code",
   "plugins": [
     {

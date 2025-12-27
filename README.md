@@ -16,18 +16,21 @@ A Claude Code plugin for personal knowledge base management with Nowledge Mem.
 ### Via Plugin Manager
 
 ```bash
-# In Claude Code
-/plugin install <marketplace-url>
+# Add marketplace
+/plugin marketplace add ferstar/nowledge-mem-plugins
+
+# Install plugin
+/plugin install nm-plugin
 ```
 
 ### Manual Installation
 
 ```bash
 # Clone the repository
-git clone <repo-url> ~/myprojects/nm-plugin
+git clone https://github.com/ferstar/nowledge-mem-plugins.git
 
 # Test locally
-claude --plugin-dir ~/myprojects/nm-plugin
+claude --plugin-dir ./nowledge-mem-plugins
 ```
 
 ## Configuration
