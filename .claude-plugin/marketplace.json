@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Personal knowledge base management plugins for Claude Code",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -16,7 +16,7 @@
         "url": "https://github.com/ferstar/nowledge-mem-plugins.git"
       },
       "description": "Unified CLI for personal knowledge base management with Nowledge Mem",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": ["knowledge-base", "memory", "session", "persistence"],
       "strict": false
     }
