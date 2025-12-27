@@ -1,6 +1,6 @@
 # Nowledge Mem Plugins
 
-Claude Code plugin marketplace for personal knowledge base management with [Nowledge Mem](https://github.com/ferstar/nowledge-mem).
+Claude Code plugin marketplace for personal knowledge base management with [Nowledge Mem](https://mem.nowledge.co/).
 
 ## Features
 
